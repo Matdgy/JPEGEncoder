@@ -2,7 +2,7 @@
 
   <!-- Project -->
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <RootNamespace>JPEGEncoder</RootNamespace>
     <Title>JPEG Encoder</Title>
     <AssemblyName>JPEGEncoder</AssemblyName>
@@ -14,5 +14,10 @@
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
+    
+  <!-- Package references -->
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="8.0.0" />
+  </ItemGroup>
 
 </Project>
