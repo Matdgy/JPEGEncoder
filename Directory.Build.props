@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Project>
+
+  <!-- Custom Variables -->
+  <PropertyGroup>
+    <BUILD>..\Build</BUILD>
+  </PropertyGroup>
+    
+  <!-- Output -->
+  <PropertyGroup>
+    <BaseIntermediateOutputPath>$(BUILD)/Objects</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BUILD)/Objects</IntermediateOutputPath>
+    <GeneratedAssemblyInfoFolder>$(BUILD)/Objects</GeneratedAssemblyInfoFolder>
+    <OutputPath>$(BUILD)\Encoder</OutputPath>
+  </PropertyGroup>
+
+</Project>

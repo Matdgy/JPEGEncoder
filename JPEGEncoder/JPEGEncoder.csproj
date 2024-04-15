@@ -14,25 +14,5 @@
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
-    
-  <!-- Custom Variables -->
-  <PropertyGroup>
-    <BUILD>..\Build</BUILD>
-  </PropertyGroup>
-    
-  <!-- Output -->
-  <PropertyGroup>
-    <BaseIntermediateOutputPath>.\obj</BaseIntermediateOutputPath>
-    <BaseIntermediateOutputPath>.\obj</BaseIntermediateOutputPath>
-    <GeneratedAssemblyInfoFolder>.\obj</GeneratedAssemblyInfoFolder>
-    <OutputPath>$(BUILD)\Encoder</OutputPath>
-  </PropertyGroup>
-    
-  <!-- Source -->
-  <ItemGroup>
-    <Compile Include=".\Src\**\*.cs" >
-      <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
-    </Compile>
-  </ItemGroup>
 
 </Project>
