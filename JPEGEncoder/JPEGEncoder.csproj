@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Project -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>JPEGEncoder</RootNamespace>
+    <Title>JPEG Encoder</Title>
+    <AssemblyName>JPEGEncoder</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RunWithWarnings>false</RunWithWarnings>
+    <LangVersion>latest</LangVersion>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+    
+  <!-- Custom Variables -->
+  <PropertyGroup>
+    <BUILD>..\Build</BUILD>
+  </PropertyGroup>
+    
+  <!-- Output -->
+  <PropertyGroup>
+    <BaseIntermediateOutputPath>.\obj</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath>.\obj</BaseIntermediateOutputPath>
+    <GeneratedAssemblyInfoFolder>.\obj</GeneratedAssemblyInfoFolder>
+    <OutputPath>$(BUILD)\Encoder</OutputPath>
+  </PropertyGroup>
+    
+  <!-- Source -->
+  <ItemGroup>
+    <Compile Include=".\Src\**\*.cs" >
+      <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Compile>
+  </ItemGroup>
+
+</Project>
