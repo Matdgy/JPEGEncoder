@@ -23,6 +23,10 @@ namespace JPEGEncoder
 				// Extend the image by repeating the last pixels
 				img = Utils.AddPadding(img);
 
+				// Cosine wave have values in the range of -1 to 1
+				// Center the values so they fall in the range of -128 to 127
+				img = Utils.CenterValues(img);
+
 			}
 		}
 	}

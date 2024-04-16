@@ -55,5 +55,16 @@ namespace JPEGEncoder
 
 			return result;
 		}
+
+		public static int[,] CenterValues(int[,] img) {
+			
+			for(int i = 0; i < img.GetLength(0); i++) {
+				for (int j = 0; j < img.GetLength(1); j++ ) {
+					img[i, j] = img[i, j] - 128;
+				}
+			}
+
+			return img;
+		}
 	}
 }
