@@ -27,6 +27,17 @@ namespace JPEGEncoder
 				// Center the values so they fall in the range of -128 to 127
 				img = Utils.CenterValues(img);
 
+				// Divide the image into a list of 8 x 8 blocks
+				List<int[,]> blocks = DCT.DivideToBlocks(img);
+
+				// Declaring a new list to hold the calculated coefficient values
+				List<double[,]> coefficients = new List<double[,]>();
+
+				// Calculating coefficients
+				foreach (int[,] block in blocks) {
+					coefficients.Add(DCT.CalculateDCTCoefficients(block));
+				}
+
 			}
 		}
 	}
