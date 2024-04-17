@@ -10,6 +10,7 @@ namespace JPEGEncoder
 {
 	internal class App {
 		static public void Main(string[] args) {
+			
 			foreach (string arg in args) {
 
 				// Read file
