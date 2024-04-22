@@ -8,6 +8,12 @@ using System.Threading.Tasks;
 namespace JPEGEncoder
 {
 	internal class Utils {
+		/// <summary>
+		/// Converts the bitmap into an integer array. This function also converts the 3 color channels to 1 channel (greyscale)
+		/// using the weighed sums of the color components according to the Luma coding.
+		/// </summary>
+		/// <param name="bitmap"></param>
+		/// <returns>Array of integers in the range of 0 - 255</returns>
 		public static int[,] ConvertBitmapToInt(Bitmap bitmap) {
 			
 			int[,] img = new int[bitmap.Width, bitmap.Height];
@@ -25,6 +31,12 @@ namespace JPEGEncoder
 			return img;
 		}
 
+		/// <summary>
+		/// Adds padding to the integer based image representation by copying the rightmost values of the array to the new columns and rows.
+		/// This results in an image representation where the number of rows and the number of columns are divisible by 8.
+		/// </summary>
+		/// <param name="img"></param>
+		/// <returns>Array of integers in the range of 0 - 255 where n of rows and columns are divisible by 8</returns>
 		public static int[,] AddPadding(int[,] img) {
 
 			int addX = (8 - img.GetLength(0) % 8) < 8 ? 8 - img.GetLength(0) % 8 : 0;
@@ -56,6 +68,11 @@ namespace JPEGEncoder
 			return result;
 		}
 
+		/// <summary>
+		/// Centers values around 0. Resulted integeres are in the range of -128 to 127.
+		/// </summary>
+		/// <param name="img"></param>
+		/// <returns>Array of integers in the range of -128 to 127</returns>
 		public static int[,] CenterValues(int[,] img) {
 			
 			for(int i = 0; i < img.GetLength(0); i++) {

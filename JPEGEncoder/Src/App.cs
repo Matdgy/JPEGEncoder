@@ -35,9 +35,13 @@ namespace JPEGEncoder
 				List<double[,]> coefficients = new List<double[,]>();
 
 				// Calculating coefficients
-				foreach (int[,] block in blocks) {
-					coefficients.Add(DCT.CalculateDCTCoefficients(block));
-				}
+				foreach (int[,] block in blocks) coefficients.Add(DCT.CalculateDCTCoefficients(block));
+
+				// Declaring a new list to hold the quantized coefficient values
+				List<int[,]> quantcblocks = new List<int[,]>();
+
+				// Quantization of DCT coefficients
+				foreach (double[,] coef in coefficients) quantcblocks.Add(DCT.QuantizeCoefficients(coef));
 
 			}
 		}

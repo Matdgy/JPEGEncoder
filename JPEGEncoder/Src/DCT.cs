@@ -8,6 +8,11 @@ namespace JPEGEncoder
 {
 	internal class DCT
 	{
+		/// <summary>
+		/// This function divides the integer array representing the image to 8x8 blocks.
+		/// </summary>
+		/// <param name="img"></param>
+		/// <returns>List of 8x8 integer arrays</returns>
 		public static List<int[,]> DivideToBlocks(int[,] img) {
 			
 			List<int[,]> blocks = new List<int[,]>();
@@ -37,6 +42,11 @@ namespace JPEGEncoder
 			return blocks;
 		}
 
+		/// <summary>
+		/// Calculates the Discrete Cosine Function coeffiecients of an 8x8 integer block.
+		/// </summary>
+		/// <param name="block"></param>
+		/// <returns>8x8 array of double values representing the coeffiecients of the input block</returns>
 		public static double[,] CalculateDCTCoefficients(int[,] block) {
 
 			Func<int, double> scalingfunction = index => {
@@ -63,6 +73,34 @@ namespace JPEGEncoder
 			}
 
 			return coef;
+		}
+
+		/// <summary>
+		/// This function calculates the quantized values of an 8x8 array of DCT coeffiecients.
+		/// The quantization matrix used represents a 50% quality compression as specified in the original JPEG standard.
+		/// </summary>
+		/// <param name="coef"></param>
+		/// <returns>Integer values of quantized coefficients</returns>
+		public static int[,] QuantizeCoefficients(double[,] coef)
+		{
+			int[,] quantized = new int[8,8];
+			int[,] quantmatrix = { { 16, 11, 10, 16, 24, 40, 51, 61 },
+												{ 12, 12, 14, 19, 26, 58, 60, 55 },
+												{ 14, 13, 16, 24, 40, 57, 69, 56 },
+												{ 14, 17, 22, 29, 51, 87, 80, 62 },
+												{ 18, 22, 37, 56, 68, 109, 103, 77 },
+												{ 24, 35, 55, 64, 81, 104, 113, 92 },
+												{ 49, 64, 78, 87, 103, 121, 120, 101 },
+												{ 72, 92, 95, 98, 112, 100, 103, 99 }
+			};
+
+			for (int i = 0; i < 8; i++) {
+				for (int j = 0; j < 8; j++) {
+					quantized[i, j] = (int)(coef[i, j] / quantmatrix[i, j]);
+				}
+			}
+
+			return quantized;
 		}
 	}
 }
