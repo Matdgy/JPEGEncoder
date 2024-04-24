@@ -83,5 +83,25 @@ namespace JPEGEncoder
 
 			return img;
 		}
+
+		/// <summary>
+		/// Create a list (vector) of elements from an array by traversing the array in a zig-zag pattern.
+		/// </summary>
+		/// <param name="block"></param>
+		/// <returns>List of integers from the block</returns>
+		public static List<int> ZigZagTraverse(int[,] block) {
+
+			List<int> result = new List<int>();
+			bool reverse = false;
+
+			for (int x = 0; x < 8; x++) {
+				for (int y = 0; y < 8; y++) {
+					result.Add(block[x, reverse ? 7 - y : y]);
+				}
+				reverse = !reverse;
+			}
+
+			return result;
+		}
 	}
 }

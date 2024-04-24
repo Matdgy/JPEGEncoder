@@ -28,7 +28,7 @@ namespace JPEGEncoder
 				// Center the values so they fall in the range of -128 to 127
 				img = Utils.CenterValues(img);
 
-				// Divide the image into a list of 8 x 8 blocks
+				// Divide the image into a list of 8 x 8 blocks (minimum coded units)
 				List<int[,]> blocks = DCT.DivideToBlocks(img);
 
 				// Declaring a new list to hold the calculated coefficient values
@@ -42,6 +42,24 @@ namespace JPEGEncoder
 
 				// Quantization of DCT coefficients
 				foreach (double[,] coef in coefficients) quantcblocks.Add(DCT.QuantizeCoefficients(coef));
+
+				// List of lists to hold the integers from the zig-zag traversal of the array
+				List<List<int>> zigzag = new List<List<int>>();
+
+				// Create a list of values by traversing the block in a zig-zag pattern
+				foreach (int[,] quantcblock in quantcblocks) {
+					zigzag.Add(Utils.ZigZagTraverse(quantcblock));
+				}
+
+				// Initialize a list of lists containing the pairs from run-length encoding the last 63 AC coefficients in a block
+				List<List<Tuple<int, int>>> pairs = new List<List<Tuple<int, int>>>();
+
+				// Utilize run-length encoding on the list of coefficients
+				// The first value (DC coefficient) is not encoded this way
+				foreach(List<int> coef in zigzag) {
+					pairs.Add(Entropy.RunLengthEncode(coef));
+				}
+
 
 			}
 		}
