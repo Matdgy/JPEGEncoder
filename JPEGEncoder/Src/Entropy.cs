@@ -10,21 +10,29 @@ namespace JPEGEncoder
 	internal class Entropy
 	{
 
+		/// <summary>
+		/// This function calculates the number of zeroes before each non zero value in a list of integers.
+		/// The first value is not calculated. Also appends an EOB marker at the end.
+		/// </summary>
+		/// <param name="coef"></param>
+		/// <returns></returns>
 		public static List<Tuple<int,int>> RunLengthEncode(List<int> coef) {
 
 			List<Tuple<int,int>> result = new List<Tuple<int,int>>();
-			int n = 0;
 
 			for (int i = 1; i < coef.Count; i++) {
 
-				while (coef[i + n] == 0) {
+				int n = 0;
+				while (i < coef.Count - 1 && coef[i] == 0) {
 					n++;
+					i++;
 				}
-				result.Add(new Tuple<int, int>(n, coef[i+n]));
-				i = i + n;
-				n = 0;
+
+				if (coef[i] != 0) result.Add(new Tuple<int, int>(n, coef[i]));
+
 			}
 
+			result.Add(new Tuple<int,int> (0, 0));
 			return result;
 		}
 	}

@@ -60,7 +60,6 @@ namespace JPEGEncoder
 					pairs.Add(Entropy.RunLengthEncode(coef));
 				}
 
-
 			}
 		}
 	}
